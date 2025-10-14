@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './Search.module.css'
 
 const lastFMAPIRoot =  import.meta.env.VITE_LASTFM_API_URL;
 const apiKey = import.meta.env.VITE_LASTFM_API_KEY;
@@ -46,10 +47,11 @@ function Search() {
     }
 
     return (
-        <div>
+        <div className={styles.search}>
             <h2>Add albums:</h2>
-            <div>
+            <div className={styles.searchBar}>
                 <input
+                    className={styles.searhBox}
                     type="text"
                     placeholder="Search..."
                     value={searchInputValue}
@@ -61,39 +63,39 @@ function Search() {
                     }}
                 />
                 <button
+                    className={styles.submitButton}
                     onClick={() => {searchAlbums(searchInputValue)}}
                 >
                 </button>
-                <div className="search-results">
-                    {showLoading === "search-results" ? (
-                        <div className="loading">
-                            <p>Loading...</p>
-                        </div>
-                    ) : (
-                        <div>
-                            {searchResults ? (
-                                searchResults.map((album, index) => {
-                                    if(album.image[1]['#text']) {
-                                        return (
-                                            <div className="albumCard">
-                                                <img 
-                                                    src={`${album.image[1]['#text']}`} 
-                                                    alt={album.name} 
-                                                    draggable="true"
-                                                />
-                                            </div>
-                                        )
-                                    }
-                                })
-                            ) : showErrorMessage.location !== "search-results" ? (
-                                <span>Album data provided by Last.fm</span>
-                            ) : (
-                                <span>{showErrorMessage.message}</span>
-                            )}
-                        </div>
-                    )}
-                </div>
             </div>
+            <div className={styles.searchResults}>
+                {showLoading === "search-results" ? (
+                    <div className="loading">
+                        <p>Loading...</p>
+                    </div>
+                ) : (
+                    <div className={styles.albumGrid}>
+                        {searchResults ? (
+                            searchResults.map((album, index) => {
+                                if(album.image[1]['#text']) {
+                                    return (
+                                        <div className={styles.albumCard}>
+                                            <img 
+                                                src={`${album.image[1]['#text']}`} 
+                                                alt={album.name} 
+                                                draggable="true"
+                                            />
+                                        </div>
+                                    )
+                                }
+                            })
+                        ) : showErrorMessage.location === "search-results" && (
+                            <span>{showErrorMessage.message}</span>
+                        )}
+                    </div>
+                )}
+            </div>
+            <span>Album data credited to Last.FM</span>
         </div>
     );
 };

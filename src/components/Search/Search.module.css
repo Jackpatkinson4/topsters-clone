@@ -1,0 +1,42 @@
+.search {
+    padding: 16px;
+    border: 1px solid black;
+}
+
+.searchBar {
+    display: flex;
+    margin: 0 10px;
+    gap: 6px;
+}
+
+.searchBox {
+    height: 36px;
+    flex-grow: 1;
+    font-size: 1rem;
+}
+
+.submitButton {
+    border-radius: 6px;
+    height: 36px;
+    width: 36px;
+}
+
+.searchResults {
+    margin: 0 10px;
+}
+
+.albumGrid {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 90px);
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 4px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.albumCard {
+    width: 100%;
+}

@@ -1,0 +1,14 @@
+.appContainer {
+    display: grid;
+    position: absolute;
+    grid-template-columns: 400px 1fr;
+    grid-template-rows: 1fr;
+}
+
+.sideBarContainer {
+    align-items: center;
+}
+
+.chartContainer {
+    text-align: center;
+}

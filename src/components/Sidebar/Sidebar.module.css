@@ -1,0 +1,9 @@
+.sideBar {
+    text-align: left;
+    position: fixed;
+    width: 400px;
+}
+
+.title {
+    text-align: center;
+}
