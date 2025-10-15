@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar.jsx';
-import Chart from '../Chart/Chart.jsx';
+import ChartBuilder from '../ChartBuilder/ChartBuilder.jsx';
 import styles from './App.module.css';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
         <Sidebar/>
       </div>
       <div className={styles.chartContainer}>
-        <Chart/>
+        <ChartBuilder/>
       </div>
     </div>
   );

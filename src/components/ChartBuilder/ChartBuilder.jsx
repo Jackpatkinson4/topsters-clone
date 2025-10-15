@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Chart() {
+function ChartBuilder() {
     return (
         <div>
             <h1>Test</h1>
@@ -8,4 +8,4 @@ function Chart() {
     );
 };
 
-export default Chart;
+export default ChartBuilder;

@@ -48,7 +48,6 @@ function Search() {
 
     return (
         <div className={styles.search}>
-            <h2>Add albums:</h2>
             <div className={styles.searchBar}>
                 <input
                     className={styles.searhBox}
@@ -66,6 +65,7 @@ function Search() {
                     className={styles.submitButton}
                     onClick={() => {searchAlbums(searchInputValue)}}
                 >
+                    🔍
                 </button>
             </div>
             <div className={styles.searchResults}>
@@ -95,7 +95,6 @@ function Search() {
                     </div>
                 )}
             </div>
-            <span>Album data credited to Last.FM</span>
         </div>
     );
 };

@@ -1,0 +1,25 @@
+.tabWrapper {
+    text-align: center;
+}
+
+.tabHeading {
+    display: flex;
+    justify-content: left;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    gap: 4px;
+}
+
+.tabLabel {
+    border: 1px solid black;
+    padding: 4px;
+    font-size: 1rem;
+}
+
+.tabContent {
+    text-align: left;
+    max-height: 480px;
+    overflow: auto;
+    padding: 16px;
+}
