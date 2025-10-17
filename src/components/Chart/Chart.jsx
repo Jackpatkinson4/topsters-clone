@@ -1,0 +1,51 @@
+import React, { useState, useEffect } from 'react';
+import AlbumCard from '../AlbumCard/AlbumCard';
+import styles from './Chart.module.css'
+
+function Chart({numRows, numCols, chartData, changeIndex}) {
+    let chartArray = [];
+    if (chartData.length < numRows*numCols) {
+        const numExtra = (numRows*numCols) - chartData.length;
+        let extraSlots = [];
+        for (let i = 0; i < numExtra; i++) {
+            extraSlots.push({});
+        };
+        chartArray = [...chartData, ...extraSlots];
+    } else if (chartData.length > numRows*numCols) {
+        chartArray = chartData.slice(0, numRows*numCols);
+    } else {
+        chartArray = chartData;
+    }
+    return (
+        <div className={styles.chartContainer}>
+            <div className={styles.chartGrid} style={{gridTemplateColumns: `repeat(${numCols}, 1fr)`}}>
+                {chartArray.map((album,index) => {
+                    return (
+                        <>
+                            {album.hasOwnProperty("image") ? (
+                                <AlbumCard 
+                                    albumData={album}
+                                    index={index}
+                                    onClick={()=>{
+                                        changeIndex(index);
+                                    }}
+                                    key={index}
+                                />
+                            ) : (
+                                <AlbumCard
+                                    index={index}
+                                    onClick={()=>{
+                                        changeIndex(index);
+                                    }}
+                                    key={index}
+                                />
+                            )}
+                        </>
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
+export default Chart;

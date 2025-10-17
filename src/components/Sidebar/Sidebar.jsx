@@ -33,7 +33,7 @@ function Sidebar() {
                 <h1>Flopsters</h1>
                 <p>A Topsters Clone</p>
             </div>
-            <Tabs tabsContent={tabs} onChange={handleTabChange}/>\
+            <Tabs tabsContent={tabs} onChange={handleTabChange}/>
             <span>Album data credited to Last.FM</span>
         </div>
     );

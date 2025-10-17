@@ -75,17 +75,16 @@ function Search() {
                     </div>
                 ) : (
                     <div className={styles.albumGrid}>
-                        {searchResults ? (
+                        {Array.isArray(searchResults) ? (
                             searchResults.map((album, index) => {
                                 if(album.image[1]['#text']) {
                                     return (
-                                        <div className={styles.albumCard}>
-                                            <img 
-                                                src={`${album.image[1]['#text']}`} 
-                                                alt={album.name} 
-                                                draggable="true"
-                                            />
-                                        </div>
+                                        <img 
+                                            src={`${album.image[1]['#text']}`} 
+                                            alt={album.name}
+                                            key={index}
+                                            draggable="true"
+                                        />
                                     )
                                 }
                             })

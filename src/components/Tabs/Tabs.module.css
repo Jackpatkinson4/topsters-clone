@@ -1,5 +1,6 @@
 .tabWrapper {
     text-align: center;
+    margin: 32px 0 16px 0;
 }
 
 .tabHeading {
@@ -19,7 +20,9 @@
 
 .tabContent {
     text-align: left;
+    border: 1px solid black;
     max-height: 480px;
+    margin-top: 3px;
     overflow: auto;
     padding: 16px;
 }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import Chart from '../Chart/Chart';
+import styles from './ChartBuilder.module.css';
 
-function ChartBuilder() {
+function ChartBuilder({numRows, numCols, chartData, changeIndex}) {
     return (
-        <div>
-            <h1>Test</h1>
+        <div className={styles.chartBuilder}>
+            <Chart numRows={numRows} numCols={numCols} chartData={chartData} changeIndex={changeIndex}/>
         </div>
     );
 };
