@@ -37,13 +37,15 @@ function App() {
   const handleImageLoaded = () => setLoadingImage(999);
   const [chartDirty, setChartDirty] = useState(true);
   const [refresh, setRefresh] = useState(false);
-  const addAlbum = (album, index) => {
+  const addAlbum = (index, album) => {
+    console.log(`Adding album: ${album.name} by ${album.artist} to chart`);
     setLoadingImage(index)
 
     let updatedArr = chartData;
     updatedArr[index] = album;
     setChartData(updatedArr);
-    if (selectedIndex < numCols * numRows - 1) {
+    console.log(chartData);
+    if (selectedIndex < chartNumCols * chartNumRows - 1) {
       setSelectedIndex(selectedIndex + 1);
     } else {
       setSelectedIndex(0);
@@ -57,7 +59,7 @@ function App() {
   return (
     <div className={styles.appContainer}>
       <div className={styles.sideBarContainer}>
-        <Sidebar numRows={chartNumRows} numCols={chartNumCols} gap={chartGap} handleSetNumRows={handleSetNumRows} handleSetNumCols={handleSetNumCols} handleSetGap={handleSetChartGap}/>
+        <Sidebar numRows={chartNumRows} numCols={chartNumCols} gap={chartGap} handleSetNumRows={handleSetNumRows} handleSetNumCols={handleSetNumCols} handleSetGap={handleSetChartGap} selectedIndex={selectedIndex} addAlbum={addAlbum}/>
       </div>
       <div className={styles.chartBuilderContainer}>
         <ChartBuilder numRows={chartNumRows} numCols={chartNumCols} gap={chartGap} chartData={chartData} changeIndex={changeIndex}/>

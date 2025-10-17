@@ -1,46 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import AlbumCard from '../AlbumCard/AlbumCard';
 import styles from './Chart.module.css'
 
 function Chart({numRows, numCols, gap, chartData, changeIndex}) {
-    let chartArray = [];
-    if (chartData.length < numRows*numCols) {
-        const numExtra = (numRows*numCols) - chartData.length;
-        let extraSlots = [];
-        for (let i = 0; i < numExtra; i++) {
-            extraSlots.push({});
-        };
-        chartArray = [...chartData, ...extraSlots];
-    } else if (chartData.length > numRows*numCols) {
-        chartArray = chartData.slice(0, numRows*numCols);
-    } else {
-        chartArray = chartData;
-    }
     return (
         <div className={styles.chartContainer}>
             <div className={styles.chartGrid} style={{gridTemplateColumns: `repeat(${numCols}, 1fr)`, gridTemplateRows: `repeat(${numRows}, 1fr)`, gap: `${gap}px`, padding: `${gap}px`}}>
-                {chartArray.map((album,index) => {
+                {chartData.slice(0, numRows*numCols).map((album,index) => {
                     return (
-                        <>
+                        <div 
+                            className={styles.albumCard}
+                            key={index}
+                            index={index}
+                            onClick={()=>{
+                                changeIndex(index);
+                            }}
+                        >
                             {album.hasOwnProperty("image") ? (
-                                <AlbumCard 
-                                    key={index}
-                                    albumData={album}
-                                    index={index}
-                                    onClick={()=>{
-                                        changeIndex(index);
-                                    }}
+                                album.image[1]["#text"] && (
+                                <img 
+                                    src={`${album.image[2]["#text"]}`}
                                 />
+                                )
                             ) : (
-                                <AlbumCard
-                                    key={index}
-                                    index={index}
-                                    onClick={()=>{
-                                        changeIndex(index);
-                                    }}
-                                />
+                                <div className={styles.albumPlaceholder}></div>
                             )}
-                        </>
+                        </div>
                     );
                 })}
             </div>

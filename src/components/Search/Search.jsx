@@ -4,7 +4,7 @@ import styles from './Search.module.css'
 const lastFMAPIRoot =  import.meta.env.VITE_LASTFM_API_URL;
 const apiKey = import.meta.env.VITE_LASTFM_API_KEY;
 
-function Search() {
+function Search({selectedIndex, addAlbum}) {
     const [searchInputValue, setSearchInputValue] = useState("");
     const [showLoading, setShowLoading] = useState("");
     const [searchResults, setSearchResults] = useState(null);
@@ -79,12 +79,20 @@ function Search() {
                             searchResults.map((album, index) => {
                                 if(album.image[1]['#text']) {
                                     return (
-                                        <img 
-                                            src={`${album.image[1]['#text']}`} 
-                                            alt={album.name}
+                                        <div
+                                            className={styles.searchAlbumCard}
+                                            onClick={() => {
+                                                addAlbum(selectedIndex, album);
+                                            }}
                                             key={index}
-                                            draggable="true"
-                                        />
+                                        >
+                                            <img 
+                                                src={`${album.image[1]['#text']}`} 
+                                                alt={album.name}
+                                                key={index}
+                                                draggable="true"
+                                            />
+                                        </div>
                                     )
                                 }
                             })

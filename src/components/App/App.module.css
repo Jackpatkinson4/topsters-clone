@@ -1,4 +1,5 @@
 .appContainer {
+    color: var(--text-color);
     display: grid;
     position: absolute;
     grid-template-columns: 400px 1fr;

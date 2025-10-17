@@ -33,3 +33,8 @@
     justify-content: space-evenly;
     gap: 4px;
 }
+
+.searchAlbumCard {
+    display: inline-flex;
+    width: 100%;
+}

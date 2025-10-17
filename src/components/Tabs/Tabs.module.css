@@ -9,18 +9,29 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    gap: 4px;
+    gap: 8px;
 }
 
 .tabLabel {
-    border: 1px solid black;
+    color: black;
+    background-color: lightgray;
+    border-radius: 6px 6px 0 0;
+    padding: 4px;
+    font-size: 1rem;
+}
+.tabLabelActive {
+    color: var(--text-color);
+    background-color: #131313;
+    border-radius: 6px 6px 0 0;
     padding: 4px;
     font-size: 1rem;
 }
 
+
 .tabContent {
     text-align: left;
-    border: 1px solid black;
+    background-color: #131313;
+    border-radius: 0 6px 6px;
     max-height: 480px;
     margin-top: 3px;
     overflow: auto;

@@ -4,11 +4,11 @@ import Search from '../Search/Search';
 import Options from '../Options/Options';
 import styles from './Sidebar.module.css';
 
-function Sidebar({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap}) {
+function Sidebar({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap, selectedIndex, addAlbum}) {
     const tabs = [
         {
             label: 'Add Items',
-            content: <Search/>
+            content: <Search selectedIndex={selectedIndex} addAlbum={addAlbum}/>
         },
         {
             label: 'Options',
