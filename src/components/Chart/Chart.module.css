@@ -1,12 +1,12 @@
 .chartContainer {
     margin: 50px 20px;
     display: inline-block;
+    position: absolute;
     background-color: black;
-    top: 50%;
 }
 
 .chartGrid {
     display: grid;
-    gap: 20px;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
 }

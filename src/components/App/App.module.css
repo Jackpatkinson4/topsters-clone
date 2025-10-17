@@ -10,5 +10,6 @@
 }
 
 .chartBuilderContainer {
+    width: 75vh;
     text-align: center;
 }

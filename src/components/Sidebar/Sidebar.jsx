@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Tabs from '../Tabs/Tabs';
 import Search from '../Search/Search';
+import Options from '../Options/Options';
 import styles from './Sidebar.module.css';
 
-function Sidebar() {
+function Sidebar({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap}) {
     const tabs = [
         {
             label: 'Add Items',
@@ -11,7 +12,7 @@ function Sidebar() {
         },
         {
             label: 'Options',
-            content: <span>TBA</span>
+            content: <Options numRows={numRows} numCols={numCols} gap={gap} handleSetNumRows={handleSetNumRows} handleSetNumCols={handleSetNumCols} handleSetGap={handleSetGap}/>
         },
         {
             label: 'Import/Export',

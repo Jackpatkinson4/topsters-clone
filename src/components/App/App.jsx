@@ -7,13 +7,17 @@ import styles from './App.module.css';
 function App() {
   // chart options
   const [chartNumRows, setChartNumRows] = useState(defaultChart.numRows);
-  const handleSetNumRows = (number) => {
-    setChartNumRows(number);
+  const handleSetNumRows = (e) => {
+    setChartNumRows(parseInt(e.target.value));
   };
   const [chartNumCols, setChartNumCols] = useState(defaultChart.numCols);
-  const handleSetChartNumCols = (number) => {
-    setChartNumCols(number);
+  const handleSetNumCols = (e) => {
+    setChartNumCols(parseInt(e.target.value));
   };
+  const [chartGap, setChartGap] = useState(defaultChart.gap);
+  const handleSetChartGap = (e) => {
+    setChartGap(parseInt(e.target.value));
+  }
 
   // chart data
   const [chartData, setChartData] = useState(emptyChart);
@@ -53,10 +57,10 @@ function App() {
   return (
     <div className={styles.appContainer}>
       <div className={styles.sideBarContainer}>
-        <Sidebar/>
+        <Sidebar numRows={chartNumRows} numCols={chartNumCols} gap={chartGap} handleSetNumRows={handleSetNumRows} handleSetNumCols={handleSetNumCols} handleSetGap={handleSetChartGap}/>
       </div>
       <div className={styles.chartBuilderContainer}>
-        <ChartBuilder numRows={chartNumRows} numCols={chartNumCols} chartData={chartData} changeIndex={changeIndex}/>
+        <ChartBuilder numRows={chartNumRows} numCols={chartNumCols} gap={chartGap} chartData={chartData} changeIndex={changeIndex}/>
       </div>
     </div>
   );

@@ -32,4 +32,5 @@ export const defaultChart = {
     numCols: 5,
     chartTitle: "",
     chartData: emptyChart,
+    gap: 20,
 }
