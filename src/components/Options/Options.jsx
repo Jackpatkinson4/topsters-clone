@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './Options.module.css';
+import { HexColorPicker } from "react-colorful";
 
-function Options({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap, showAlbumTitles, setShowAlbumTitles}) {
+function Options({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap, showAlbumTitles, setShowAlbumTitles, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, openMenuPopUp, handleOpenPopUp}) {
     return (
         <div className={styles.optionsList}>
             <div className={styles.switchInputContainer}>
@@ -27,6 +28,35 @@ function Options({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, han
                     <span className={styles.valueDisplay}>{numCols}</span>
                 </div>
             </div>
+            <div className={styles.selectTypeContainer}>
+                <label htmlFor="backgroundType">Background Type:</label>
+                <div className={styles.selectContianer}>
+                    <select id="backgroundType" name="backgroundType" value={backgroundType} onChange={setBackgroundType}>
+                        <option value="color">Color</option>
+                        <option value="image">Image</option>
+                    </select>
+                </div>
+            </div>
+            {backgroundType == "color" ? (
+                <div className={styles.colorInputContainer}>
+                    <label htmlFor="colorButton">Background Color:</label>
+                    <div className={styles.colorPickerContainer} style={{backgroundColor: `${backgroundColor}`}}>
+                        {openMenuPopUp === "backgroundColor" && (
+                            <div className={styles.colorPickerPopUp}>
+                                <button className={styles.closePopUp} id="closePopUp" onClick={() => handleOpenPopUp("")}>X</button>
+                                <HexColorPicker
+                                    className={styles.colorPicker}
+                                    color={backgroundColor}
+                                    onChange={setBackgroundColor}
+                                />
+                            </div>
+                        )}
+                        <div className={styles.colorButton} id="colorButton" onClick={() => handleOpenPopUp("backgroundColor")}></div>
+                    </div>
+                </div>
+            ) : (
+                <span>TBA</span>
+            )}
             <div className={styles.rangeInputContainer}>
                 <label htmlFor="gapSlider">Gap:</label>
                 <div className={styles.sliderContainer}>

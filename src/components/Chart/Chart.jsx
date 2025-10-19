@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import DeleteButton from '../DeleteButton/DeleteButton';
 import styles from './Chart.module.css'
 
-function Chart({numRows, numCols, gap, chartData, setChartData, changeIndex, removeAlbum, showAlbumTitles}) {
+function Chart({numRows, numCols, gap, chartData, setChartData, changeIndex, removeAlbum, showAlbumTitles, backgroundColor}) {
     return (
-        <div className={styles.chartContainer}>
+        <div className={styles.chartContainer} style={{backgroundColor: `${backgroundColor}`}}>
             <div className={styles.chartGrid} style={{gap: `${gap}px`, padding: `${gap}px`}}>
                 {chartData.map((row, rowIndex) => {
                     return (

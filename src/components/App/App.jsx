@@ -115,11 +115,12 @@ function App() {
 
   // remove album from chart
   const removeAlbum = (index) => {
-    console.log(`Removing album ${chartData[index].name} by ${chartData[index].artist} at ${index} from chart`);
     setLoadingImage(index);
 
     const colIndex = index % chartNumCols;
     const rowIndex = (index - colIndex) / chartNumCols;
+
+     console.log(`Removing album ${chartData[rowIndex][colIndex].name} by ${chartData[rowIndex][colIndex].artist} at ${index} from chart`);
 
     let updatedArr = chartData;
     updatedArr[rowIndex][colIndex] = {};
@@ -149,6 +150,29 @@ function App() {
     setShowAlbumTitles(e.target.checked);
   }
 
+  // background type
+  const [backgroundType, setBackgroundType] = useState("color");
+  const handleSetBackgroundType = (e) => {
+    console.log(e.target.value);
+    setBackgroundType(e.target.value);
+  }
+
+  //background color
+  const [backgroundColor, setBackgroundColor] = useState("black");
+  const handleSetBackgroundColor = (color) => {
+    console.log(color);
+    setBackgroundColor(color);
+  }
+
+  const [openPopUp, setOpenPopUp] = useState("");
+  const handleOpenPopUp = (selectedPopUp) => {
+    if (selectedPopUp !== "") {
+      openPopUp !== selectedPopUp ? setOpenPopUp(selectedPopUp) : setOpenPopUp("");
+    } else {
+      setOpenPopUp("");
+    }
+  }
+
   return (
     <div className={styles.appContainer}>
       <div className={styles.sideBarContainer}>
@@ -165,6 +189,12 @@ function App() {
           setSearchResults={handleSetSearchResults} 
           showAlbumTitles={showAlbumTitles} 
           setShowAlbumTitles={handleSetShowAlbumTitles}
+          backgroundType={backgroundType}
+          setBackgroundType={handleSetBackgroundType}
+          backgroundColor={backgroundColor}
+          setBackgroundColor={handleSetBackgroundColor}
+          openMenuPopUp={openPopUp}
+          handleOpenPopUp={handleOpenPopUp}
         />
       </div>
       <div className={styles.chartBuilderContainer}>
@@ -177,6 +207,7 @@ function App() {
           changeIndex={changeIndex} 
           removeAlbum={removeAlbum}
           showAlbumTitles={showAlbumTitles} 
+          backgroundColor={backgroundColor}
         />
       </div>
     </div>
