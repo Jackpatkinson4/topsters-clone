@@ -1,28 +1,75 @@
 import React, { useState, useEffect } from 'react';
+import DeleteButton from '../DeleteButton/DeleteButton';
 import styles from './Chart.module.css'
 
-function Chart({numRows, numCols, gap, chartData, changeIndex}) {
+function Chart({numRows, numCols, gap, chartData, changeIndex, removeAlbum, showAlbumTitles}) {
+    let chartArray = []
+    let currIndex = 0;
+    for (let i = 0; i < numRows; i++) {
+        const row = [];
+        for (let j = 0; j < numCols; j++) {
+            row.push(chartData[currIndex]);
+            currIndex++;
+        }
+        chartArray.push(row);
+    }
+    console.log(chartArray);
     return (
         <div className={styles.chartContainer}>
-            <div className={styles.chartGrid} style={{gridTemplateColumns: `repeat(${numCols}, 1fr)`, gridTemplateRows: `repeat(${numRows}, 1fr)`, gap: `${gap}px`, padding: `${gap}px`}}>
-                {chartData.slice(0, numRows*numCols).map((album,index) => {
+            <div className={styles.chartGrid} style={{gap: `${gap}px`, padding: `${gap}px`}}>
+                {chartArray.map((row, rowIndex) => {
                     return (
-                        <div 
-                            className={styles.albumCard}
-                            key={index}
-                            index={index}
-                            onClick={()=>{
-                                changeIndex(index);
-                            }}
+                        <div
+                            className={styles.chartRow}
+                            style={{gap:`${gap}px`, gridTemplateColumns: `repeat(${numCols}, 1fr)`}}
+                            key={rowIndex}
                         >
-                            {album.hasOwnProperty("image") ? (
-                                album.image[1]["#text"] && (
-                                <img 
-                                    src={`${album.image[2]["#text"]}`}
-                                />
-                                )
-                            ) : (
-                                <div className={styles.albumPlaceholder}></div>
+                            {row.map((album, colIndex) => {
+                                return (
+                                    <div 
+                                        className={styles.albumCard}
+                                        key={colIndex}
+                                        index = {(rowIndex * numCols) + colIndex}
+                                        onClick={()=>{
+                                            const index = (rowIndex * numCols) + colIndex;
+                                            changeIndex(index);
+                                        }}
+                                        draggable
+                                    >
+                                        {album.hasOwnProperty("image") ? (
+                                            album.image[1]["#text"] && (
+                                                <>
+                                                    <img 
+                                                        src={`${album.image[2]["#text"]}`}
+                                                    />
+                                                    <DeleteButton index={(rowIndex*numCols)+colIndex} removeAlbum={removeAlbum}/>
+                                                </>
+                                            )
+                                        ) : (
+                                            <div className={styles.albumPlaceholder}></div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                            {showAlbumTitles && (
+                                <div className={styles.titleList}>
+                                    {row.map((album, index) => {
+                                        return (
+                                            <div
+                                                className={styles.albumTitle}
+                                                key={index}
+                                            >
+                                                {album.artist ? (
+                                                    <span>
+                                                        {album.artist} - {album.name}
+                                                    </span>
+                                                ) : (
+                                                    <span></span>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             )}
                         </div>
                     );

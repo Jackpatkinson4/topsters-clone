@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 import Chart from '../Chart/Chart';
 import styles from './ChartBuilder.module.css';
 
-function ChartBuilder({numRows, numCols, gap, chartData, changeIndex}) {
+function ChartBuilder({numRows, numCols, gap, chartData, changeIndex, removeAlbum, showAlbumTitles}) {
     return (
         <div className={styles.chartBuilder}>
-            <Chart numRows={numRows} numCols={numCols} gap={gap} chartData={chartData} changeIndex={changeIndex}/>
+            <Chart 
+                numRows={numRows} 
+                numCols={numCols} 
+                gap={gap} 
+                chartData={chartData} 
+                changeIndex={changeIndex} 
+                removeAlbum={removeAlbum}
+                showAlbumTitles={showAlbumTitles} 
+            />
         </div>
     );
 };

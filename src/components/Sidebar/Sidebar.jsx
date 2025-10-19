@@ -4,15 +4,29 @@ import Search from '../Search/Search';
 import Options from '../Options/Options';
 import styles from './Sidebar.module.css';
 
-function Sidebar({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap, selectedIndex, addAlbum}) {
+function Sidebar({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap, selectedIndex, addAlbum, searchResults, setSearchResults, showAlbumTitles, setShowAlbumTitles}) {
     const tabs = [
         {
             label: 'Add Items',
-            content: <Search selectedIndex={selectedIndex} addAlbum={addAlbum}/>
+            content: <Search 
+                        selectedIndex={selectedIndex} 
+                        addAlbum={addAlbum} 
+                        searchResults={searchResults} 
+                        setSearchResults={setSearchResults}
+                    />
         },
         {
             label: 'Options',
-            content: <Options numRows={numRows} numCols={numCols} gap={gap} handleSetNumRows={handleSetNumRows} handleSetNumCols={handleSetNumCols} handleSetGap={handleSetGap}/>
+            content: <Options 
+                        numRows={numRows} 
+                        numCols={numCols} 
+                        gap={gap} 
+                        handleSetNumRows={handleSetNumRows} 
+                        handleSetNumCols={handleSetNumCols} 
+                        handleSetGap={handleSetGap} 
+                        showAlbumTitles={showAlbumTitles} 
+                        setShowAlbumTitles={setShowAlbumTitles}
+                    />
         },
         {
             label: 'Import/Export',

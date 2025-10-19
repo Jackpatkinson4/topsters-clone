@@ -4,10 +4,9 @@ import styles from './Search.module.css'
 const lastFMAPIRoot =  import.meta.env.VITE_LASTFM_API_URL;
 const apiKey = import.meta.env.VITE_LASTFM_API_KEY;
 
-function Search({selectedIndex, addAlbum}) {
+function Search({selectedIndex, addAlbum, searchResults, setSearchResults}) {
     const [searchInputValue, setSearchInputValue] = useState("");
     const [showLoading, setShowLoading] = useState("");
-    const [searchResults, setSearchResults] = useState(null);
 
     const [showErrorMessage, setShowErrorMessage] = useState(
         {
@@ -63,7 +62,9 @@ function Search({selectedIndex, addAlbum}) {
                 />
                 <button
                     className={styles.submitButton}
-                    onClick={() => {searchAlbums(searchInputValue)}}
+                    onClick={() => {
+                        searchAlbums(searchInputValue)
+                    }}
                 >
                     🔍
                 </button>
