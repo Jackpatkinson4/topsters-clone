@@ -7,13 +7,63 @@ import styles from './App.module.css';
 function App() {
   // chart options
   const [chartNumRows, setChartNumRows] = useState(defaultChart.numRows);
-  const handleSetNumRows = (e) => {
-    setChartNumRows(parseInt(e.target.value));
-  };
   const [chartNumCols, setChartNumCols] = useState(defaultChart.numCols);
-  const handleSetNumCols = (e) => {
-    setChartNumCols(parseInt(e.target.value));
+
+  const handleSetNumRows = (e) => {
+    const currNumRows = chartNumRows;
+    const nextNumRows = e.target.value;
+
+    let numNewRows = 0;
+    let newChart = chartData;
+    if (currNumRows > nextNumRows) {
+      numNewRows = currNumRows - nextNumRows;
+      for (let i = 0; i < numNewRows; i++) {
+        newChart.pop();
+      }
+    } else {
+      numNewRows = nextNumRows - currNumRows;
+      for (let i = 0; i < numNewRows; i++) {
+        const row = [];
+        for (let j = 0; j < chartNumCols; j++) {
+          row.push({});
+        }
+        newChart.push(row);
+      }
+    }
+
+    setChartNumRows(parseInt(nextNumRows));
+    setChartData(newChart);
   };
+
+  const handleSetNumCols = (e) => {
+    const currNumCols = chartNumCols;
+    const nextNumCols = e.target.value;
+
+    let numNewCols = 0;
+    let newChart = chartData;
+    if (currNumCols > nextNumCols) {
+      numNewCols = currNumCols - nextNumCols;
+      for (let i = 0; i < chartNumRows; i++) {
+        const row = newChart[i];
+        for (let j = 0; j < numNewCols; j++) {
+          row.pop();
+        }
+        newChart[i] = row;
+      }
+    } else {
+      numNewCols = nextNumCols - currNumCols;
+      for (let i = 0; i < chartNumRows; i++) {
+        const row = newChart[i];
+        for (let j = 0; j < numNewCols; j++) {
+          row.push({});
+        }
+        newChart[i] = row;
+      }
+    }
+    setChartNumCols(parseInt(nextNumCols));
+    setChartData(newChart);
+  };
+
   const [chartGap, setChartGap] = useState(defaultChart.gap);
   const handleSetChartGap = (e) => {
     setChartGap(parseInt(e.target.value));
@@ -21,6 +71,10 @@ function App() {
 
   // chart data
   const [chartData, setChartData] = useState(emptyChart);
+  const handleSetChartData = (data) => {
+    console.log(data);
+    setChartData(data);
+  }
 
   // chart title
   const [chartTitle, setChartTitle] = useState(defaultChart.chartTitle);
@@ -41,9 +95,12 @@ function App() {
     console.log(`Adding album ${album.name} by ${album.artist} to chart at index ${index}`);
     setLoadingImage(index);
 
+    const colIndex = index % chartNumCols;
+    const rowIndex = (index - colIndex) / chartNumCols;
+
     let updatedArr = chartData;
-    updatedArr[index] = album;
-    setChartData(updatedArr);
+    updatedArr[rowIndex][colIndex] = album;
+    setChartData(updatedArr); 
     console.log(chartData);
     if (selectedIndex < chartNumCols * chartNumRows - 1) {
       setSelectedIndex(selectedIndex + 1);
@@ -61,8 +118,11 @@ function App() {
     console.log(`Removing album ${chartData[index].name} by ${chartData[index].artist} at ${index} from chart`);
     setLoadingImage(index);
 
+    const colIndex = index % chartNumCols;
+    const rowIndex = (index - colIndex) / chartNumCols;
+
     let updatedArr = chartData;
-    updatedArr[index] = {};
+    updatedArr[rowIndex][colIndex] = {};
     setChartData(updatedArr);
     console.log(chartData);
     if (selectedIndex < chartNumCols * chartNumRows - 1) {
@@ -112,7 +172,8 @@ function App() {
           numRows={chartNumRows} 
           numCols={chartNumCols} 
           gap={chartGap} 
-          chartData={chartData} 
+          chartData={chartData}
+          setChartData={handleSetChartData}
           changeIndex={changeIndex} 
           removeAlbum={removeAlbum}
           showAlbumTitles={showAlbumTitles} 

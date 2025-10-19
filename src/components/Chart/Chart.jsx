@@ -2,22 +2,11 @@ import React, { useState, useEffect } from 'react';
 import DeleteButton from '../DeleteButton/DeleteButton';
 import styles from './Chart.module.css'
 
-function Chart({numRows, numCols, gap, chartData, changeIndex, removeAlbum, showAlbumTitles}) {
-    let chartArray = []
-    let currIndex = 0;
-    for (let i = 0; i < numRows; i++) {
-        const row = [];
-        for (let j = 0; j < numCols; j++) {
-            row.push(chartData[currIndex]);
-            currIndex++;
-        }
-        chartArray.push(row);
-    }
-    console.log(chartArray);
+function Chart({numRows, numCols, gap, chartData, setChartData, changeIndex, removeAlbum, showAlbumTitles}) {
     return (
         <div className={styles.chartContainer}>
             <div className={styles.chartGrid} style={{gap: `${gap}px`, padding: `${gap}px`}}>
-                {chartArray.map((row, rowIndex) => {
+                {chartData.map((row, rowIndex) => {
                     return (
                         <div
                             className={styles.chartRow}
