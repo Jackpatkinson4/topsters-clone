@@ -173,6 +173,79 @@ function App() {
     }
   }
 
+  // font style
+  const [fontStyle, setFontStyle] = useState("monospace");
+  const handleSetFontStyle = (e) => {
+    console.log(e.target.value);
+    setFontStyle(e.target.value);
+  }
+
+  // drag and drop
+  const [draggingItem, setDraggingItem] = useState({
+    item: {title: "", artist: "", cover: ""},
+    index: -1,
+    origin: ""
+  });
+
+  const initDrag = (e, album) => {
+    console.log("drag");
+    const dragData = {
+      item: album,
+      index: -1
+    }
+    
+    if (e.dataTransfer) {
+      e.dataTransfer.setData('dragData', dragData);
+      setDraggingItem(dragData);
+    }
+  }
+
+  const allowDrop = (e) => {
+    console.log("hover");
+    e.preventDefault();
+  }
+
+  const handleDragStart = (e, album, index) => {
+    if (!album) {
+      return null;
+    }
+
+    const dragData = {
+      item: album,
+      index: index,
+    }
+
+    if (e.dataTransfer) {
+      const dragImage = <img className="dnd-img" src={album.image[2]["#text"]}></img>;
+      const container = <div className="dnd-container">{dragImage}</div>;
+      
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData('dragData', dragData);
+      setDraggingItem(dragData);
+    }
+  }
+
+  const handleDrop = (e, index) => {
+    console.log("drop");
+    e.preventDefault();
+
+    const dragData = draggingItem
+
+    if (dragData) {
+      if (dragData.index != -1) {
+        removeAlbum(dragData.index);
+        addAlbum(index, dragData.item);
+      } else {
+        addAlbum(index, dragData.item);
+      }
+      setDraggingItem({
+        item: {title: "", artist: "", cover: ""},
+        index: -1,
+        origin: ""
+      });
+    }
+  }
+
   return (
     <div className={styles.appContainer}>
       <div className={styles.sideBarContainer}>
@@ -195,6 +268,9 @@ function App() {
           setBackgroundColor={handleSetBackgroundColor}
           openMenuPopUp={openPopUp}
           handleOpenPopUp={handleOpenPopUp}
+          fontStyle={fontStyle}
+          setFontStyle={handleSetFontStyle}
+          initDrag={initDrag}
         />
       </div>
       <div className={styles.chartBuilderContainer}>
@@ -204,10 +280,16 @@ function App() {
           gap={chartGap} 
           chartData={chartData}
           setChartData={handleSetChartData}
+          selectedIndex={selectedIndex}
           changeIndex={changeIndex} 
+          addAlbum = {addAlbum}
           removeAlbum={removeAlbum}
           showAlbumTitles={showAlbumTitles} 
           backgroundColor={backgroundColor}
+          fontStyle={fontStyle}
+          handleDragStart={handleDragStart}
+          allowDrop={allowDrop}
+          handleDrop={handleDrop}
         />
       </div>
     </div>

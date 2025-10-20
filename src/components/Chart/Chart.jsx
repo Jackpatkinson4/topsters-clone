@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DeleteButton from '../DeleteButton/DeleteButton';
 import styles from './Chart.module.css'
 
-function Chart({numRows, numCols, gap, chartData, setChartData, changeIndex, removeAlbum, showAlbumTitles, backgroundColor}) {
+function Chart({numRows, numCols, gap, chartData, setChartData, selectedIndex, changeIndex, addAlbum, removeAlbum, showAlbumTitles, backgroundColor, fontStyle, handleDragStart, allowDrop, handleDrop}) {
     return (
         <div className={styles.chartContainer} style={{backgroundColor: `${backgroundColor}`}}>
             <div className={styles.chartGrid} style={{gap: `${gap}px`, padding: `${gap}px`}}>
@@ -20,10 +20,13 @@ function Chart({numRows, numCols, gap, chartData, setChartData, changeIndex, rem
                                         key={colIndex}
                                         index = {(rowIndex * numCols) + colIndex}
                                         onClick={()=>{
-                                            const index = (rowIndex * numCols) + colIndex;
+                                            const index = (rowIndex * numCols) + colIndex
                                             changeIndex(index);
                                         }}
                                         draggable
+                                        onDragStart={(e) => handleDragStart(e, album, (rowIndex * numCols) + colIndex)}
+                                        onDragOver={allowDrop}
+                                        onDrop={(e) => handleDrop(e, (rowIndex * numCols) + colIndex)}
                                     >
                                         {album.hasOwnProperty("image") ? (
                                             album.image[1]["#text"] && (
@@ -41,7 +44,7 @@ function Chart({numRows, numCols, gap, chartData, setChartData, changeIndex, rem
                                 );
                             })}
                             {showAlbumTitles && (
-                                <div className={styles.titleList}>
+                                <div className={styles.titleList} style={{fontFamily:`${fontStyle}`}}>
                                     {row.map((album, index) => {
                                         return (
                                             <div

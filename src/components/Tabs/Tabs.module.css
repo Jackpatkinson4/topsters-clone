@@ -34,6 +34,6 @@
     border-radius: 0 6px 6px;
     max-height: 480px;
     margin-top: 3px;
-    overflow: visible;
+    overflow: scroll;
     padding: 16px;
 }

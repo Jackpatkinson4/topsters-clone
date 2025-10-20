@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Options.module.css';
 import { HexColorPicker } from "react-colorful";
 
-function Options({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap, showAlbumTitles, setShowAlbumTitles, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, openMenuPopUp, handleOpenPopUp}) {
+function Options({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap, showAlbumTitles, setShowAlbumTitles, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, openMenuPopUp, handleOpenPopUp, fontStyle, setFontStyle}) {
     return (
         <div className={styles.optionsList}>
             <div className={styles.switchInputContainer}>
@@ -62,6 +62,16 @@ function Options({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, han
                 <div className={styles.sliderContainer}>
                     <input className={styles.slider} id="gapSlider" name="gapSlider" type="range" min="1" max="150" value={gap} onChange={handleSetGap}/>
                     <span className={styles.valueDisplay}>{gap}</span>
+                </div>
+            </div>
+            <div className={styles.selectTypeContainer}>
+                <label htmlFor="fontStyle">Font Style:</label>
+                <div className={styles.selectContianer}>
+                    <select id="fontStyle" name="fontStyle" value={fontStyle} onChange={setFontStyle}>
+                        <option value="serif" style={{fontFamily:"serif"}}>Serif</option>
+                        <option value="sans-serif" style={{fontFamily:"sans-serif"}}>Sans-Serif</option>
+                        <option value="monospace" style={{fontFamily:"monospace"}}>Monospace</option>
+                    </select>
                 </div>
             </div>
         </div>

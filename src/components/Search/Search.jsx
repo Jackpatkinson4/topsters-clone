@@ -4,7 +4,7 @@ import styles from './Search.module.css'
 const lastFMAPIRoot =  import.meta.env.VITE_LASTFM_API_URL;
 const apiKey = import.meta.env.VITE_LASTFM_API_KEY;
 
-function Search({selectedIndex, addAlbum, searchResults, setSearchResults}) {
+function Search({selectedIndex, addAlbum, searchResults, setSearchResults, initDrag}) {
     const [searchInputValue, setSearchInputValue] = useState("");
     const [showLoading, setShowLoading] = useState("");
 
@@ -92,6 +92,7 @@ function Search({selectedIndex, addAlbum, searchResults, setSearchResults}) {
                                                 alt={album.name}
                                                 key={index}
                                                 draggable="true"
+                                                onDragStart={e => initDrag(e, album)}
                                             />
                                         </div>
                                     )
