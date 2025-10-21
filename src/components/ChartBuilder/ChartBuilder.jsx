@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Chart from '../Chart/Chart';
 import styles from './ChartBuilder.module.css';
 
-function ChartBuilder({numRows, numCols, gap, chartData, setChartData, selectedIndex, changeIndex, addAlbum, removeAlbum, showAlbumTitles, backgroundColor, fontStyle, handleDragStart, allowDrop, handleDrop}) {
+function ChartBuilder({numRows, numCols, chartTitle, gap, chartData, setChartData, selectedIndex, changeIndex, addAlbum, removeAlbum, showAlbumTitles, backgroundColor, fontStyle, handleDragStart, allowDrop, handleDrop}) {
     return (
         <div className={styles.chartBuilder}>
             <Chart 
                 numRows={numRows} 
                 numCols={numCols} 
+                chartTitle={chartTitle}
                 gap={gap} 
                 chartData={chartData} 
                 setChartData={setChartData}

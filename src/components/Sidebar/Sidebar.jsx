@@ -4,7 +4,7 @@ import Search from '../Search/Search';
 import Options from '../Options/Options';
 import styles from './Sidebar.module.css';
 
-function Sidebar({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap, selectedIndex, addAlbum, searchResults, setSearchResults, showAlbumTitles, setShowAlbumTitles, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, openMenuPopUp, handleOpenPopUp, fontStyle, setFontStyle, initDrag}) {
+function Sidebar({numRows, numCols, gap, chartTitle, handleSetNumRows, handleSetNumCols, handleSetGap, handleSetChartTitle, selectedIndex, addAlbum, searchResults, setSearchResults, showAlbumTitles, setShowAlbumTitles, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, openMenuPopUp, handleOpenPopUp, fontStyle, setFontStyle, initDrag}) {
     const tabs = [
         {
             label: 'Add Items',
@@ -22,9 +22,11 @@ function Sidebar({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, han
                         numRows={numRows} 
                         numCols={numCols} 
                         gap={gap} 
+                        chartTitle={chartTitle}
                         handleSetNumRows={handleSetNumRows} 
                         handleSetNumCols={handleSetNumCols} 
                         handleSetGap={handleSetGap} 
+                        handleSetChartTitle={handleSetChartTitle}
                         showAlbumTitles={showAlbumTitles} 
                         setShowAlbumTitles={setShowAlbumTitles}
                         backgroundType={backgroundType}

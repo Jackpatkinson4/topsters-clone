@@ -30,10 +30,10 @@
 
 .tabContent {
     text-align: left;
+    max-height: 480px;
+    overflow-y: auto;
     background-color: #131313;
     border-radius: 0 6px 6px;
-    max-height: 480px;
     margin-top: 3px;
-    overflow: scroll;
     padding: 16px;
 }

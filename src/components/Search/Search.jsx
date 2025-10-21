@@ -46,10 +46,11 @@ function Search({selectedIndex, addAlbum, searchResults, setSearchResults, initD
     }
 
     return (
-        <div className={styles.search}>
+        <div className={styles.searchForm}>
             <div className={styles.searchBar}>
                 <input
                     className={styles.searhBox}
+                    id="searchBox"
                     type="text"
                     placeholder="Search..."
                     value={searchInputValue}

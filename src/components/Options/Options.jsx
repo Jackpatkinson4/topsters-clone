@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import styles from './Options.module.css';
 import { HexColorPicker } from "react-colorful";
 
-function Options({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, handleSetGap, showAlbumTitles, setShowAlbumTitles, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, openMenuPopUp, handleOpenPopUp, fontStyle, setFontStyle}) {
+function Options({numRows, numCols, gap, chartTitle, handleSetNumRows, handleSetNumCols, handleSetGap, handleSetChartTitle, showAlbumTitles, setShowAlbumTitles, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, openMenuPopUp, handleOpenPopUp, fontStyle, setFontStyle}) {
     return (
         <div className={styles.optionsList}>
+            <div className={styles.textInputContainer}>
+                <label htmlFor="title">Title:</label>
+                <div className={styles.textContainer}>
+                    <input className={styles.textInput} id="title" placeHolder="Type your title here!" name="title" type="text" value={chartTitle} onChange={handleSetChartTitle}/>
+                </div>
+            </div>
             <div className={styles.switchInputContainer}>
                 <label htmlFor="showTitlesSwitch">Show Titles:</label>
                 <div className={styles.switchContainer}>
@@ -30,7 +36,7 @@ function Options({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, han
             </div>
             <div className={styles.selectTypeContainer}>
                 <label htmlFor="backgroundType">Background Type:</label>
-                <div className={styles.selectContianer}>
+                <div className={styles.selectContainer}>
                     <select id="backgroundType" name="backgroundType" value={backgroundType} onChange={setBackgroundType}>
                         <option value="color">Color</option>
                         <option value="image">Image</option>
@@ -66,8 +72,8 @@ function Options({numRows, numCols, gap, handleSetNumRows, handleSetNumCols, han
             </div>
             <div className={styles.selectTypeContainer}>
                 <label htmlFor="fontStyle">Font Style:</label>
-                <div className={styles.selectContianer}>
-                    <select id="fontStyle" name="fontStyle" value={fontStyle} onChange={setFontStyle}>
+                <div className={styles.selectContainer}>
+                    <select id="fontStyle" name="fontStyle" value={fontStyle} onChange={setFontStyle} style={{fontFamily:`${fontStyle}`}}>
                         <option value="serif" style={{fontFamily:"serif"}}>Serif</option>
                         <option value="sans-serif" style={{fontFamily:"sans-serif"}}>Sans-Serif</option>
                         <option value="monospace" style={{fontFamily:"monospace"}}>Monospace</option>

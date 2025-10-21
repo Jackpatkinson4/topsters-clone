@@ -78,8 +78,8 @@ function App() {
 
   // chart title
   const [chartTitle, setChartTitle] = useState(defaultChart.chartTitle);
-  const handleSetChartTitle = (title) => {
-    setChartTitle(title);
+  const handleSetChartTitle = (e) => {
+    setChartTitle(e.target.value);
   };
 
   // add album to chart
@@ -253,9 +253,11 @@ function App() {
           numRows={chartNumRows} 
           numCols={chartNumCols} 
           gap={chartGap} 
+          chartTitle={chartTitle}
           handleSetNumRows={handleSetNumRows} 
           handleSetNumCols={handleSetNumCols} 
-          handleSetGap={handleSetChartGap} 
+          handleSetGap={handleSetChartGap}
+          handleSetChartTitle={handleSetChartTitle}
           selectedIndex={selectedIndex} 
           addAlbum={addAlbum} 
           searchResults={searchResults} 
@@ -277,6 +279,7 @@ function App() {
         <ChartBuilder 
           numRows={chartNumRows} 
           numCols={chartNumCols} 
+          chartTitle={chartTitle}
           gap={chartGap} 
           chartData={chartData}
           setChartData={handleSetChartData}

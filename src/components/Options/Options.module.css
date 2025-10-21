@@ -1,7 +1,7 @@
 .optionsList {
     display: flex;
     flex-flow: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 .rangeInputContainer {
@@ -86,6 +86,13 @@
     gap: 10px;
 }
 
+.selectContainer select {
+    display: inline;
+    width: auto;
+    border:none;
+    min-width: 80px;
+}
+
 .colorInputContainer {
     display:flex;
     align-items: center;
@@ -139,4 +146,22 @@
     background-color: #ffffffaa;
     color: black;
     transition: 0.2s;
+}
+
+.textInputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.textContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.textInput input {
+    font-size: 16px;
+    height: 28px;
 }

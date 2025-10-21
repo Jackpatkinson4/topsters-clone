@@ -1,5 +1,5 @@
-.search {
-    padding: 16px;
+.searchForm {
+    padding: 5px 0;
 }
 
 .searchBar {
@@ -8,8 +8,7 @@
     gap: 6px;
 }
 
-.searchBox {
-    height: 36px;
+.searchBar input {
     flex-grow: 1;
     font-size: 1rem;
 }
