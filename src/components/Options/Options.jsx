@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Options.module.css';
 import { HexColorPicker } from "react-colorful";
 
-function Options({numRows, numCols, gap, chartTitle, handleSetNumRows, handleSetNumCols, handleSetGap, handleSetChartTitle, showAlbumTitles, setShowAlbumTitles, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, openMenuPopUp, handleOpenPopUp, fontStyle, setFontStyle}) {
+function Options({numRows, numCols, gap, chartTitle, roundCorners, handleSetNumRows, handleSetNumCols, handleSetGap, handleSetChartTitle, setRoundCorners, showAlbumTitles, setShowAlbumTitles, showTitleNumbers, handleSetShowTitleNumbers, chartTextColor, setChartTextColor, backgroundType, enableDropShadow, handleSetEnableDropShadow, setBackgroundType, backgroundColor, setBackgroundColor, backgroundImageURL, setBackgroundImageURL, openMenuPopUp, handleOpenPopUp, fontStyle, setFontStyle}) {
     return (
         <div className={styles.optionsList}>
             <div className={styles.textInputContainer}>
@@ -61,13 +61,45 @@ function Options({numRows, numCols, gap, chartTitle, handleSetNumRows, handleSet
                     </div>
                 </div>
             ) : (
-                <span>TBA</span>
+                <div className={styles.textInputContainer}>
+                    <label htmlFor="backgroundURL">Background URL:</label>
+                    <div className={styles.textContainer}>
+                        <input className={styles.textInput} id="backgroundURL" placeHolder="Paste the link to your image here!" name="backgroundURL" type="text" value={backgroundImageURL} onChange={setBackgroundImageURL}/>
+                    </div>
+                </div>
             )}
             <div className={styles.rangeInputContainer}>
                 <label htmlFor="gapSlider">Gap:</label>
                 <div className={styles.sliderContainer}>
                     <input className={styles.slider} id="gapSlider" name="gapSlider" type="range" min="1" max="150" value={gap} onChange={handleSetGap}/>
                     <span className={styles.valueDisplay}>{gap}</span>
+                </div>
+            </div>
+            <div className={styles.switchInputContainer}>
+                <label htmlFor="showNumbersSwitch">Show Numbers:</label>
+                <div className={styles.switchContainer}>
+                    <input className={styles.switch} id="showNumbersSwitch" type="checkbox" checked={showTitleNumbers} onChange={handleSetShowTitleNumbers}/>
+                    <label className={styles.switchLabel} style={{background: showTitleNumbers && 'blue'}}htmlFor="showNumbersSwitch">
+                        <span className={styles.switchButton}/>
+                    </label>
+                </div>
+            </div>
+            <div className={styles.switchInputContainer}>
+                <label htmlFor="showDropShadowSwitch">Enable Drop Shadow:</label>
+                <div className={styles.switchContainer}>
+                    <input className={styles.switch} id="showDropShadowSwitch" type="checkbox" checked={enableDropShadow} onChange={handleSetEnableDropShadow}/>
+                    <label className={styles.switchLabel} style={{background: enableDropShadow && 'blue'}}htmlFor="showDropShadowSwitch">
+                        <span className={styles.switchButton}/>
+                    </label>
+                </div>
+            </div>
+            <div className={styles.switchInputContainer}>
+                <label htmlFor="roundCornersSwitch">Round Corners:</label>
+                <div className={styles.switchContainer}>
+                    <input className={styles.switch} id="roundCornersSwitch" type="checkbox" checked={roundCorners} onChange={setRoundCorners}/>
+                    <label className={styles.switchLabel} style={{background: roundCorners && 'blue'}}htmlFor="roundCornersSwitch">
+                        <span className={styles.switchButton}/>
+                    </label>
                 </div>
             </div>
             <div className={styles.selectTypeContainer}>
@@ -78,6 +110,22 @@ function Options({numRows, numCols, gap, chartTitle, handleSetNumRows, handleSet
                         <option value="sans-serif" style={{fontFamily:"sans-serif"}}>Sans-Serif</option>
                         <option value="monospace" style={{fontFamily:"monospace"}}>Monospace</option>
                     </select>
+                </div>
+            </div>
+            <div className={styles.colorInputContainer}>
+                <label htmlFor="colorButton">Text Color:</label>
+                <div className={styles.colorPickerContainer} style={{backgroundColor: `${chartTextColor}`}}>
+                    {openMenuPopUp === "chartTextColor" && (
+                        <div className={styles.colorPickerPopUp}>
+                            <button className={styles.closePopUp} id="closePopUp" onClick={() => handleOpenPopUp("")}>X</button>
+                            <HexColorPicker
+                                className={styles.colorPicker}
+                                color={chartTextColor}
+                                onChange={setChartTextColor}
+                            />
+                        </div>
+                    )}
+                    <div className={styles.colorButton} id="colorButton" onClick={() => handleOpenPopUp("chartTextColor")}></div>
                 </div>
             </div>
         </div>

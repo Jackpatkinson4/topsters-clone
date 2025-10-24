@@ -4,7 +4,7 @@ import Search from '../Search/Search';
 import Options from '../Options/Options';
 import styles from './Sidebar.module.css';
 
-function Sidebar({numRows, numCols, gap, chartTitle, handleSetNumRows, handleSetNumCols, handleSetGap, handleSetChartTitle, selectedIndex, addAlbum, searchResults, setSearchResults, showAlbumTitles, setShowAlbumTitles, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, openMenuPopUp, handleOpenPopUp, fontStyle, setFontStyle, initDrag}) {
+function Sidebar({numRows, numCols, gap, chartTitle, roundCorners, handleSetNumRows, handleSetNumCols, handleSetGap, handleSetChartTitle, setRoundCorners, selectedIndex, addAlbum, searchResults, setSearchResults, showAlbumTitles, setShowAlbumTitles, showTitleNumbers, handleSetShowTitleNumbers, chartTextColor, setChartTextColor, enableDropShadow, handleSetEnableDropShadow, backgroundType, setBackgroundType, backgroundColor, setBackgroundColor, backgroundImageURL, setBackgroundImageURL, openMenuPopUp, handleOpenPopUp, fontStyle, setFontStyle, initDrag}) {
     const tabs = [
         {
             label: 'Add Items',
@@ -23,16 +23,26 @@ function Sidebar({numRows, numCols, gap, chartTitle, handleSetNumRows, handleSet
                         numCols={numCols} 
                         gap={gap} 
                         chartTitle={chartTitle}
+                        roundCorners={roundCorners}
                         handleSetNumRows={handleSetNumRows} 
                         handleSetNumCols={handleSetNumCols} 
                         handleSetGap={handleSetGap} 
                         handleSetChartTitle={handleSetChartTitle}
+                        setRoundCorners={setRoundCorners}
                         showAlbumTitles={showAlbumTitles} 
                         setShowAlbumTitles={setShowAlbumTitles}
+                        showTitleNumbers={showTitleNumbers}
+                        handleSetShowTitleNumbers={handleSetShowTitleNumbers}
+                        chartTextColor={chartTextColor}
+                        setChartTextColor={setChartTextColor}
+                        enableDropShadow={enableDropShadow}
+                        handleSetEnableDropShadow={handleSetEnableDropShadow}
                         backgroundType={backgroundType}
                         setBackgroundType={setBackgroundType}
                         backgroundColor={backgroundColor}
                         setBackgroundColor={setBackgroundColor}
+                        backgroundImageURL={backgroundImageURL}
+                        setBackgroundImageURL={setBackgroundImageURL}
                         openMenuPopUp={openMenuPopUp}
                         handleOpenPopUp={handleOpenPopUp}
                         fontStyle={fontStyle}

@@ -146,8 +146,13 @@ function App() {
   // album titles
   const [showAlbumTitles, setShowAlbumTitles] = useState(false);
   const handleSetShowAlbumTitles = (e) => {
-    console.log(e.target.checked)
     setShowAlbumTitles(e.target.checked);
+  }
+
+  // title numbers
+  const [showTitleNumbers, setShowTitleNumbers] = useState(false);
+  const handleSetShowTitleNumbers = (e) => {
+    setShowTitleNumbers(e.target.checked);
   }
 
   // background type
@@ -173,11 +178,37 @@ function App() {
     }
   }
 
+  //background image
+  const [backgroundImageURL, setBackgroundImageURL] = useState("");
+  const handleSetBackgroundImageURL = (e) => {
+    setBackgroundImageURL(e.target.value);
+  }
+
+  // round corners
+  const [roundCorners, setRoundCorners] = useState(false);
+  const handleSetRoundCorners = (e) => {
+    console.log(e.target.checked);
+    setRoundCorners(e.target.checked);
+  }
+
   // font style
   const [fontStyle, setFontStyle] = useState("monospace");
   const handleSetFontStyle = (e) => {
     console.log(e.target.value);
     setFontStyle(e.target.value);
+  }
+
+  // chart text color
+  const [chartTextColor, setChartTextColor] = useState("white");
+  const handleSetChartTextColor = (color) => {
+    console.log(color);
+    setChartTextColor(color);
+  }
+
+  // drop shadow
+  const [enableDropShadow, setEnableDropShadow] = useState(true);
+  const handleSetEnableDropShadow = (e) => {
+    setEnableDropShadow(e.target.checked);
   }
 
   // drag and drop
@@ -254,20 +285,30 @@ function App() {
           numCols={chartNumCols} 
           gap={chartGap} 
           chartTitle={chartTitle}
+          roundCorners={roundCorners}
           handleSetNumRows={handleSetNumRows} 
           handleSetNumCols={handleSetNumCols} 
           handleSetGap={handleSetChartGap}
           handleSetChartTitle={handleSetChartTitle}
+          setRoundCorners={handleSetRoundCorners}
           selectedIndex={selectedIndex} 
           addAlbum={addAlbum} 
           searchResults={searchResults} 
           setSearchResults={handleSetSearchResults} 
           showAlbumTitles={showAlbumTitles} 
           setShowAlbumTitles={handleSetShowAlbumTitles}
+          showTitleNumbers={showTitleNumbers}
+          handleSetShowTitleNumbers={handleSetShowTitleNumbers}
+          chartTextColor={chartTextColor}
+          setChartTextColor={handleSetChartTextColor}
+          enableDropShadow={enableDropShadow}
+          handleSetEnableDropShadow={handleSetEnableDropShadow}
           backgroundType={backgroundType}
           setBackgroundType={handleSetBackgroundType}
           backgroundColor={backgroundColor}
           setBackgroundColor={handleSetBackgroundColor}
+          backgroundImageURL={backgroundImageURL}
+          setBackgroundImageURL={handleSetBackgroundImageURL}
           openMenuPopUp={openPopUp}
           handleOpenPopUp={handleOpenPopUp}
           fontStyle={fontStyle}
@@ -281,14 +322,20 @@ function App() {
           numCols={chartNumCols} 
           chartTitle={chartTitle}
           gap={chartGap} 
+          roundCorners={roundCorners}
           chartData={chartData}
           setChartData={handleSetChartData}
           selectedIndex={selectedIndex}
           changeIndex={changeIndex} 
           addAlbum = {addAlbum}
           removeAlbum={removeAlbum}
-          showAlbumTitles={showAlbumTitles} 
+          showAlbumTitles={showAlbumTitles}
+          showTitleNumbers={showTitleNumbers}
+          chartTextColor={chartTextColor}
+          enableDropShadow={enableDropShadow}
+          backgroundType={backgroundType}
           backgroundColor={backgroundColor}
+          backgroundImageURL={backgroundImageURL}
           fontStyle={fontStyle}
           handleDragStart={handleDragStart}
           allowDrop={allowDrop}
