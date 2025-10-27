@@ -5,6 +5,19 @@ import ChartBuilder from '../ChartBuilder/ChartBuilder.jsx';
 import styles from './App.module.css';
 
 function App() {
+   // chart data
+  const [chartData, setChartData] = useState(emptyChart);
+  const handleSetChartData = (data) => {
+    console.log(data);
+    setChartData(data);
+  }
+
+  // chart title
+  const [chartTitle, setChartTitle] = useState(defaultChart.chartTitle);
+  const handleSetChartTitle = (e) => {
+    setChartTitle(e.target.value);
+  };
+
   // chart options
   const [chartNumRows, setChartNumRows] = useState(defaultChart.numRows);
   const [chartNumCols, setChartNumCols] = useState(defaultChart.numCols);
@@ -69,24 +82,12 @@ function App() {
     setChartGap(parseInt(e.target.value));
   }
 
-  // chart data
-  const [chartData, setChartData] = useState(emptyChart);
-  const handleSetChartData = (data) => {
-    console.log(data);
-    setChartData(data);
-  }
-
-  // chart title
-  const [chartTitle, setChartTitle] = useState(defaultChart.chartTitle);
-  const handleSetChartTitle = (e) => {
-    setChartTitle(e.target.value);
-  };
-
   // add album to chart
   const [selectedIndex, setSelectedIndex] = useState(0);
   const changeIndex = (index) => {
     setSelectedIndex(index);
   };
+
   const [loadingImage, setLoadingImage] = useState(999);
   const handleImageLoaded = () => setLoadingImage(999);
   const [chartDirty, setChartDirty] = useState(true);
@@ -132,6 +133,25 @@ function App() {
       setSelectedIndex(0);
     }
 
+    setRefresh(true);
+    setRefresh(!refresh);
+    setChartDirty(true);
+  }
+
+  // reset chart to default
+  const resetChart = () => {
+    console.log("resetting chart");
+    let newChart = chartData;
+    
+    for (let i = 0; i < newChart.length; i++) {
+      newChart[i] = [{},{},{},{},{}];
+    }
+
+    setChartData(newChart);
+    console.log(chartData);
+
+    setSelectedIndex(0);
+    
     setRefresh(true);
     setRefresh(!refresh);
     setChartDirty(true);
@@ -340,6 +360,7 @@ function App() {
           handleDragStart={handleDragStart}
           allowDrop={allowDrop}
           handleDrop={handleDrop}
+          resetChart={resetChart}
         />
       </div>
     </div>
